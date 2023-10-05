@@ -18,7 +18,7 @@ def low_pass(c1,c2,a1,b1,fc):
 ```
 
 ## Diseño para filtro pasa altas segundo orden Sallen Key
-``` python
+```python
 def high_pass(c,a1,b1,fc):
     r1=1/(np.pi*fc*c*a1)
     r2=a1/(4*np.pi*fc*c*b1)
