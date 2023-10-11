@@ -5,7 +5,7 @@ import numpy as np
     
 while True:
     os.system("cls")
-    print("Welcome to FILTER DESIGNER TOOL (Electrónica 3) \n Select the type of filter you want to design: \n 1. Low-pass \n 2. High-pass \n 3. pass-band")
+    print("Welcome to FILTER DESIGNER TOOL (Electrónica 3) \n Select the type of filter you want to design: \n 1. Low-pass \n 2. High-pass \n 3. pass-band SK \n 4. pass-band MFB")
    
     try:
         sel=0
@@ -48,7 +48,7 @@ while True:
             c=float(input("Capacitors: "))
             q=float(input("Quality factor: "))
             ra=float(input("Ra: "))
-            [r,rf,g]=ft.pass_band_just(fm,c,q,ra)
+            [r,rf,g,a]=ft.pass_band_just(fm,c,q,ra)
             os.system("cls")
             print("This is your filter design")
             print(f"R = [{int(r)} Ohm's]")
@@ -57,9 +57,25 @@ while True:
             print(f"C = [{np.format_float_scientific(c)} F]")
             print(f"average frequency = [{np.format_float_scientific(fm,2)} Hz]")
             print(f"G = [{g}]")
+            print(f"A=[{a}]")
             print(f"Quality factor = [{q}]")
     
             salir=input("Press enter for continue")
+        if sel == 4:
+            print("Your select Pass-band Filter \n Insert the values for Fm, Am, C, Q: ")
+            Fm=float(input("Average frequency: "))
+            Am=float(input("Average gain: "))
+            Q=float(input("Quality factor: "))
+            C=float(input("Capacitor: "))
+            [R2,R1,R3]=ft.pass_band_mfb(Am,Fm,C,Q)
+            os.system("cls")
+            print(f"Average frequency: {Fm}")
+            print(f"Average gain: {Am}")
+            print(f"Quality factor: {Q}")
+            print(f"Capacitor: {C}")
+            print(f"Resistencias | R1 = {R1} | R2 = {R2} | R3 = {R3} |")
+            salir=input("Press enter for continue")
+            
     except:
         print("You have entered an invalid acction")
         time.sleep(2)

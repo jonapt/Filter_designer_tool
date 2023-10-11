@@ -17,4 +17,13 @@ def pass_band_just(fm,c,q,ra):
     r=1/(2*np.pi*fm*c)
     g=(3*q-1)/q
     rf=(g-1)*ra
-    return[r,rf,g]
+    a=g/(3-g)
+    return[r,rf,g,a]
+
+## Diseño para filtro pasa banda angosta MFB (Multi feedback)
+
+def pass_band_mfb(Am,Fm,C,Q):
+    R2=Q/(np.pi*Fm*C)
+    R1=R2/(-2*Am)
+    R3=(-Am*R1)/((2*Q**2)+Am)
+    return(R2,R1,R3)
